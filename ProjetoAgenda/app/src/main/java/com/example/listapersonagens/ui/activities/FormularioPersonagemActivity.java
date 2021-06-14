@@ -24,7 +24,7 @@ import static com.example.listapersonagens.ui.activities.ConstantesActivities.CH
 
 public class FormularioPersonagemActivity extends AppCompatActivity {
 
-    //var dos nomes que ficam no cabeçalho
+    //variavel dos nomes que ficam no cabeçalho
     private static final String TITULO_APPBAR_EDITA_PERSONAGEM = "Editar Personagem" ;
     private static final String TITULO_APPBAR_NOVO_PERSONAGEM = "Novo Personagem";
 
@@ -40,14 +40,14 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     private final PersonagemDAO dao = new PersonagemDAO();
     private Personagem personagem;
 
-    //abre o menu de scrollview
+    //abre o menu scrollview
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_formulario_personagem_menu_salvar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    //finaliza o menu scrollview ao clicar no botão
+    //fecha o menu scrollview clicando no botaão
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -59,18 +59,18 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     }
 
     @Override
-    //faz o processo de inicialização
+    //inicia
     protected void onCreate(@NonNull Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //pegando item pelo id
+        //pega o item pelo id
         setContentView(R.layout.activity_formulario_personagem);
-        //ordem da execução dos eventos no Oncreate
+        //ordem da execução dos eventos
         inicializaCampos();
         configuraoBotaoSalvar();
         carregaPersonagem();
     }
 
-    //carrega o personagem para fazer o edit / criar
+    //carrega o personagem
     private void carregaPersonagem() {
         Intent dados = getIntent();
         if (dados.hasExtra(CHAVE_PERSONAGEM)) {
@@ -95,7 +95,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campogenero.setText(personagem.getGenero());
     }
 
-    //salva o conteudo ao clicar
+    //salva o conteudo
     private void configuraoBotaoSalvar() {
         Button botaosalvar = findViewById(R.id.savebutton);
         botaosalvar.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +106,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         });
     }
 
-    //Finaliza e salva formulario
+    //Finaliza e salva
     private void FinalizaFormulario() {
         preenchePersonagens();
         if (personagem.IdValido()) {
@@ -130,33 +130,33 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoEndereco = findViewById(R.id.editText_endereco);
         campoTelefone = findViewById(R.id.editText_telefone);
 
-        //configura a formatação com imports de outra biblioteca
+        //configura a formatação usando imports de outra biblioteca
         SimpleMaskFormatter smfAltura = new SimpleMaskFormatter("N,NN");
         MaskTextWatcher mtwAltura = new MaskTextWatcher(campoAltura, smfAltura);
         campoAltura.addTextChangedListener(mtwAltura);
 
-        //configura a formatação layout com imports de outra biblioteca
+        //configura o layout com outra biblioteca
         SimpleMaskFormatter smfNascimento = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher mtwNascimento = new MaskTextWatcher(campoNascimento, smfNascimento);
         campoNascimento.addTextChangedListener(mtwNascimento);
 
-        //configura a formatação layout com imports de outra biblioteca
+        //configura o layout com outra biblioteca
         SimpleMaskFormatter smfRg = new SimpleMaskFormatter("NN.NNN.NNN-N");
         MaskTextWatcher mtwRG = new MaskTextWatcher(camporg, smfRg);
         camporg.addTextChangedListener(mtwRG);
 
-        //configura a formatação layout com imports de outra biblioteca
+        //configura o layout com outra biblioteca
         SimpleMaskFormatter smfcep = new SimpleMaskFormatter("NNNNN-NN");
         MaskTextWatcher mtwcep = new MaskTextWatcher(campoCep, smfcep);
         campoCep.addTextChangedListener(mtwcep);
 
-        //configura a formatação layout com imports de outra biblioteca
+        //configura o layout com outra biblioteca
         SimpleMaskFormatter smftelefone = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
         MaskTextWatcher mtwtelefone = new MaskTextWatcher(campoTelefone, smftelefone);
         campoTelefone.addTextChangedListener(mtwtelefone);
     }
 
-    //usado para dar conteudo aos campos e transforma em string
+    //usado para dar conteudo e transforma em string
     private void preenchePersonagens() {
         String nome = campoNome.getText().toString();
         String altura = campoAltura.getText().toString();
